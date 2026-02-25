@@ -1,0 +1,30 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      router.push('/dashboard');
+    } else {
+      router.push('/auth/login');
+    }
+  }, [router]);
+
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      background: '#0a0e27'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '48px', marginBottom: '20px' }}>⏳</div>
+        <p style={{ color: '#fff', fontSize: '16px' }}>Redirecting...</p>
+      </div>
+    </div>
+  );
+}
